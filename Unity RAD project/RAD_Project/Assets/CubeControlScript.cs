@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CubeControlScript : MonoBehaviour
 {
+    public GameObject snowballclonetemplate;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +40,18 @@ public class CubeControlScript : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             transform.Rotate(Vector3.up, 90 * Time.deltaTime);
+    
         }
+
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            GameObject newGO = Instantiate(snowballclonetemplate);
+
+            Snowballcontrolscript mySnowball = newGO.GetComponent<Snowballcontrolscript>();
+
+            mySnowball.ImThrowingYou(this);
+        }
+
     }
+
 }
