@@ -7,23 +7,38 @@ public class CubeControlScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector3(0, 7, 0);
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.W) )
+        Rigidbody myRB;
+
+        myRB = GetComponent<Rigidbody>();
+
+        if (Input.GetKey(KeyCode.W))
         {
-            transform.position += Vector3.forward * Time.deltaTime;
+
+
+            myRB.AddForce(transform.forward);
+
+            // transform.position += transform.forward * Time.deltaTime;
         }
 
+        if (Input.GetKey(KeyCode.Space))
+        {
+            myRB.AddExplosionForce(10, transform.position + Vector3.down, 5);
+        }
         if (Input.GetKey(KeyCode.A))
         {
-            transform.Rotate(Vector3.up, 90 * Time.deltaTime); 
+            transform.Rotate(Vector3.up, -90 * Time.deltaTime);
         }
 
-
-
+        if (Input.GetKey(KeyCode.D))
+        {
+            transform.Rotate(Vector3.up, 90 * Time.deltaTime);
+        }
     }
 }
