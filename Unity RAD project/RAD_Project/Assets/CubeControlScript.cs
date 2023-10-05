@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CubeControlScript : MonoBehaviour
 {
     public GameObject snowballclonetemplate;
+    private Vector3 moveDirection;
+
     // Start is called before the first frame update
     void Start()
-    {
-
+    { 
 
     }
 
@@ -21,11 +24,9 @@ public class CubeControlScript : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W))
         {
+            //myRB.AddForce(transform.forward);
 
-
-            myRB.AddForce(transform.forward);
-
-            // transform.position += transform.forward * Time.deltaTime;
+            transform.position += transform.forward * 5 * Time.deltaTime;
         }
 
         if (Input.GetKey(KeyCode.Space))
@@ -40,10 +41,17 @@ public class CubeControlScript : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             transform.Rotate(Vector3.up, 90 * Time.deltaTime);
-    
         }
 
-        if (Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKey(KeyCode.S))
+        {
+            
+             transform.Translate(-Vector3.forward * 3 * Time.deltaTime);
+
+
+        }
+
+            if (Input.GetKeyDown(KeyCode.G))
         {
             GameObject newGO = Instantiate(snowballclonetemplate);
 
@@ -55,3 +63,4 @@ public class CubeControlScript : MonoBehaviour
     }
 
 }
+
